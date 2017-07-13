@@ -1,0 +1,33 @@
+.home-page__top-section {
+  display: flex;
+  justify-content: space-between;
+
+  &_spin-react {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 0 center;
+    background-image: url("./img/react-icon.svg");
+    animation-name: spin;
+    animation-duration: 8000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transition: all 2s ease;
+
+    &-wrapper {
+      margin-top: 50px;
+      display: inline-block;
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform:rotate(0deg);
+  }
+  to {
+    transform:rotate(360deg);
+  }
+}

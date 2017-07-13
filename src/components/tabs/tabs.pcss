@@ -1,0 +1,57 @@
+.tabs {
+	width: 100%;
+	margin: 0 auto;
+	min-height: 380px;
+	font-family: "Arial", sans-serif;
+
+	&__tab {
+		padding: 0 20px;
+		display: flex;
+		overflow: hidden;
+		list-style-type: none;
+		border: 1px solid #ccc;
+		background-color: #f1f1f1;
+		margin: 50px auto 0 auto;
+
+		&__li {
+			display: inline-flex;
+
+			a {
+				color: black;
+				cursor: pointer;
+				font-size: 18px;
+				transition: 0.3s;
+				text-align: center;
+				padding: 14px 16px;
+				text-decoration: none;
+				font-family: "Arial", sans-serif;
+			}
+
+			&_a_active {
+				background-color: #ccc;
+			}
+
+			&:hover {
+				background-color: #ddd;
+			}
+		}
+	}
+}
+
+
+.tab_content {
+	padding: 10px 50px;
+	border: 1px solid #ccc;
+	border-top: none;
+
+	&__city {
+
+		&_description {
+			line-height: 25px;
+		}
+
+		&_title {
+			font-size: 24px;
+		}
+	}
+}
