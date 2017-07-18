@@ -1,33 +1,47 @@
 import React, { Component } from "react";
 import _ from "lodash";
 
-import { createStore } from '../../redux';
+import { createStore } from 'redux';
 
 const initialState = {
 	selected: 0
 };
 
-const changeTab = (state = {selected: 0}, index) => {
-	return state.sleected = index;
+const reducer = (state, action) => {
+	switch (action.type) {
+		case 'CHANGE_TAB':
+			return { selected: action.payload.selected };
+		default: return state;
+	}
 };
 
-const store = createStore(changeTab, initialState);
+const store = createStore(reducer, initialState);
 
-const render = () => {
+const getCurrentState = () => {
 	console.log('state changed ', store.getState());
 };
 
-store.subscribe(render);
+store.subscribe(getCurrentState);
 
 export default class TabsInner extends Component {
+	constructor(props) {
+		super(props);
+
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	componentDidMount() {
+		store.subscribe(() => this.forceUpdate());
+	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		return this.props !== nextProps || this.state.selected !== nextState.selected;
+		console.log(nextProps, nextState);
+		return this.props !== nextProps || store.state.selected !== nextState.selected;
 	}
 
 	handleClick(index){
-		console.log(index);
-		store.dispatch(index);
+		let action = {type: 'CHANGE_TAB', payload: {selected: index} };
+		store.dispatch(action);
 	}
 
 	_renderTitles() {
@@ -53,6 +67,7 @@ export default class TabsInner extends Component {
 	}
 
 	_renderContent() {
+		debugger;
 		return (
 			<div className="tab_content">
 				{this.props.children[store.getState().selected]}
